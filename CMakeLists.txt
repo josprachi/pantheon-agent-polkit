@@ -12,6 +12,13 @@ set (DOLLAR "$")
 
 set (PKEXECDIR "${CMAKE_INSTALL_FULL_LIBEXECDIR}/policykit-1-pantheon")
 
+# CTest
+include (CTest)
+if (BUILD_TESTING)
+    add_test (NAME validate-desktop-file1 COMMAND desktop-file-validate ${CMAKE_BINARY_DIR}/data/org.pantheon.agent-polkit.desktop)
+    add_test (NAME validate-desktop-file2 COMMAND desktop-file-validate ${CMAKE_BINARY_DIR}/data/org.pantheon.agent-polkit-daemon.desktop)
+endif ()
+
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 add_definitions (-w)
 add_definitions (-DPOLKIT_AGENT_I_KNOW_API_IS_SUBJECT_TO_CHANGE)
